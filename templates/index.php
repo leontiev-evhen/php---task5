@@ -8,10 +8,10 @@
         <title>Course PHP -  Task 1</title>
 
         <!-- Bootstrap -->
-        <link href="<?php echo PATH;?>templates/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo PATH;?>css/bootstrap.min.css" rel="stylesheet">
 
         <!-- My style -->
-        <link href="<?php echo PATH;?>templates/css/style.css" rel="stylesheet">
+        <link href="<?php echo PATH;?>css/style.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -21,65 +21,31 @@
     </head>
     <body>
         <div class="container mt-50">
-            <?php if (isset($message))
+            <?php if (isset($error))
             { ?>
 
                 <div class="row">
                     <div class="col-md-12">
 
-                        <?php echo $message;?>
+                        <?php echo $error;?>
 
                     </div>
                 </div>
 
             <?php } ?>
             <div class="row">
+                <h2>Task 4 [Interface]</h2>
                 <div class="col-md-12">
-                    <form action="<?php echo PATH;?>index.php?action=upload" enctype="multipart/form-data" method="post">
-                        <div class="form-group">
-                            <label class="custom-file">
-                                <input type="file" name="file" id="file" class="custom-file-input">
- 
-                                <span class="custom-file-control"></span>
-                            </label>
-                            <input type="submit" name="upload" value="Upload">
-                        </div>
-                    </form>
+                   <div class="col-md-6">Session: <?php echo $session;?></div>
+                   <div class="col-md-6">Cookie: <?php echo $cookie;?></div>
                 </div>
             </div>
 
-        <?php   if (!empty($files))
-                { ?>
-
-            <table class="table table-striped">
-                <tr>
-                    <th>№</th>
-                    <th>Name file</th>
-                    <th>Size file</th>
-                    <th>Action</th>
-                </tr>
-            <?php
-            $i = 1;
-
-            foreach ($files as $file)
-            { ?>
-
-                    <tr>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $file['name']?></td>
-                        <td><?php echo $file['size'];?></td>
-                        <td><a href="?action=delete&file=<?php echo $file['name'];?>">Delete</a></td>
-                    </tr>
-
-            <?php  $i++; }  ?>
-                </table>
-
-        <?php } ?>
         </div>
          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
          <!-- Include all compiled plugins (below), or include individual files as needed -->
-         <script src="<?php echo PATH;?>templates/js/bootstrap.min.js"></script>
+         <script src="<?php echo PATH;?>js/bootstrap.min.js"></script>
 
     </body>
 </html>

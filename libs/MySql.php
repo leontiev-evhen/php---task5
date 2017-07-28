@@ -2,7 +2,8 @@
 class MySql extends Sql implements iWorkData
 {
     private $dbh;
-    public function __construct()
+
+    public function __construct ()
     {
         if ($this->dbh = new PDO('mysql:host='.HOST.';dbname='.DB, USER, PASSWORD_SQL))
         {
@@ -14,57 +15,46 @@ class MySql extends Sql implements iWorkData
         }
     }
 
-public function saveData($key, $val)
-{
-    $sql = parent::insert($key, $val);
-    
-    if($this->dbh->query($sql))
+    public function saveData ($key, $val)
     {
-        echo 'success';
+        $sql = parent::insert($key, $val);
+        if ($this->dbh->query($sql))
+        {
+            return SUCCESS_MESAGE;
+        }
+        else
+        {
+            throw new Exception('Insert error');
+        }
     }
-    else
-    {
-        echo 'error';
-    }
-}
 
-public function getData($key)
-{
-    $sql = parent::select($key);
-    $result = $this->dbh->prepare($sql);
-    if ($result->execute())
+    public function getData ($key)
     {
-         return $result->fetch(PDO::FETCH_ASSOC);  
+        $sql = parent::select($key);
+        $result = $this->dbh->prepare($sql);
+        if ($result->execute())
+        {
+            return $result->fetch(PDO::FETCH_ASSOC);
+        }
+        else
+        {
+            throw new Exception('Select error');
+        }
     }
-    else
-    {
-        throw new Exception('Error');
-    }
-}
 
-public function deleteData($key)
-{
-    $sql = parent::delete($key);
-    if($this->dbh->query($sql))
+    public function deleteData ($key)
     {
-         echo 'success deleted';  
+        $sql = parent::delete($key);
+        if ($this->dbh->query($sql))
+        {
+            return SUCCESS_MESAGE;
+        }
+        else
+        {
+            throw new Exception('Delete error');
+        }
     }
-    else
-    {
-        throw new Exception('Error');
-    }
-}
 
-private function checkExistCookie($key)
-{
-    if(isset($_COOKIE[$key]))
-    {
-        return true;
-    }
-    else
-    {
-        throw new Exception('COOKIE is not exist');
-    }
-}
+
 }
 ?>
