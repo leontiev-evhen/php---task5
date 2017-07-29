@@ -1,31 +1,31 @@
 <?php
 class Cookie implements iWorkData
 {
-    public function saveData($key, $val)
+    public function saveData ($key, $val)
     {
         setcookie($key, $val);
         $_COOKIE[$key] = $val;
     }
 
-    public function getData($key)
+    public function getData ($key)
     {
-        if($this->checkExistCookie($key))
+        if ($this->checkExistCookie($key))
         {
              return $_COOKIE[$key];
         }
     }
 
-    public function deleteData($key)
+    public function deleteData ($key)
     {
-        if($this->checkExistCookie($key))
+        if ($this->checkExistCookie($key))
         {
             unset($_COOKIE[$key]);
         }
     }
 
-    private function checkExistCookie($key)
+    private function checkExistCookie ($key)
     {
-        if(isset($_COOKIE[$key]))
+        if (isset($_COOKIE[$key]))
         {
             return true;
         }

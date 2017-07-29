@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -34,10 +34,48 @@
 
             <?php } ?>
             <div class="row">
-                <h2>Task 4 [Interface]</h2>
+                <h2>Task 5 [Interface]</h2>
                 <div class="col-md-12">
-                   <div class="col-md-6">Session: <?php echo $session;?></div>
-                   <div class="col-md-6">Cookie: <?php echo $cookie;?></div>
+                    <?php if(isset($session)) { ?>
+                        <div class="col-md-6">Session: <?php echo $session;?></div>
+                    <?php } ?>
+                    <?php if(isset($cookie)) { ?>
+                        <div class="col-md-6">Cookie: <?php echo $cookie;?></div>
+                    <?php } ?>
+                    <?php if(isset($mysql)) { ?>
+                        <div class="col-md-6">MySql:<br>
+                            <?php
+                            if (is_array($mysql))
+                            {
+                                foreach($mysql as $item)
+                                {
+                                    echo $item.'<br>';
+                                }
+                            }
+                            else
+                            {
+                                echo $mysql;
+                            }
+                            ?>
+                        </div>
+                    <?php } ?>
+                    <?php if(isset($postgresql)) {?>
+                        <div class="col-md-6">PostgreSql:<br>
+                            <?php
+                            if (is_array($postgresql))
+                            {
+                                foreach($postgresql as $item)
+                                {
+                                    echo $item.'<br>';
+                                }
+                            }
+                            else
+                            {
+                                echo $postgresql;
+                            }
+                            ?>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
