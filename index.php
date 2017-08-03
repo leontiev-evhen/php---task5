@@ -21,7 +21,7 @@
         $mysql = $obj->getData('user11');
 
         $obj = new PostgreSql();
-        $obj->saveData('user11', 'test postgresql');
+        $obj->saveData('user11', 'test');
         $postgresql = $obj->getData('user11');
 
     }

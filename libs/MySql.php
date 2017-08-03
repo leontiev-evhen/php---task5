@@ -19,13 +19,16 @@ class MySql extends Sql implements iWorkData
     public function saveData ($key, $val)
     {
         $sql = parent::insert($this->typeDb, $key, $val);
-        if ($this->dbh->query($sql))
+        if (empty($this->getData($key)))
         {
-            return SUCCESS_MESAGE;
-        }
-        else
-        {
-            throw new Exception('Mysql insert error');
+             if ($this->dbh->query($sql))
+             {
+                 return SUCCESS_MESAGE;
+             }
+             else
+             {
+                 throw new Exception('Mysql insert error');
+             }
         }
     }
 

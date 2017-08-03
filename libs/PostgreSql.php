@@ -3,7 +3,6 @@ class PostgreSql extends Sql implements iWorkData
 {
     private $dbh;
     private $typeDb = 'postgresql';
-
     public function __construct ()
     {
         if ($this->dbh = new PDO('pgsql:host='.HOST.'; dbname='.DB.'; user='.USER_PG.'; password='.PASSWORD_PSQL))
@@ -19,13 +18,17 @@ class PostgreSql extends Sql implements iWorkData
     public function saveData ($key, $val)
     {
         $sql = parent::insert($this->typeDb, $key, $val);
-        if ($this->dbh->query($sql))
-        {
-            return SUCCESS_MESAGE;
-        }
-        else
-        {
-            throw new Exception('Postgresql insert error');
+
+        if (empty($this->getData($key)))
+         {
+             if ($this->dbh->query($sql))
+             {
+                 return SUCCESS_MESAGE;
+             }
+             else
+             {
+                 throw new Exception('Postgresql insert error');
+             }
         }
     }
 
@@ -55,5 +58,4 @@ class PostgreSql extends Sql implements iWorkData
             throw new Exception('Postgresql delete error');
         }
     }
-
 }

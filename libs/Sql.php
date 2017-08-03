@@ -5,7 +5,7 @@ class Sql
         'mysql',
         'postgresql'
     ];
-    
+
     protected function select ($typeDb, $key)
     {
         if ($this->checkTypeDb($typeDb))
@@ -16,15 +16,13 @@ class Sql
             }
             else
             {
-                return 'SELECT mt.key, mt.data FROM "'.TABLE_PG.'" mt WHERE key = \''.$key.'\' LIMIT 1';
+                return 'SELECT mt.key, mt.data FROM '.TABLE_PG.' mt WHERE key = \''.$key.'\' LIMIT 1';
             }
-            
+
         }
-        
+
     }
-
-
-     protected function insert ($typeDb, $key, $val)
+    protected function insert ($typeDb, $key, $val)
     {
         if ($this->checkTypeDb($typeDb)) 
         {
@@ -34,7 +32,7 @@ class Sql
             }
             else
             {
-                return 'INSERT INTO "' . TABLE_PG . '" (key, data) SELECT * FROM (SELECT \'' . $key . '\', \'' . $val . '\') AS mt WHERE NOT EXISTS ( SELECT key FROM "' . TABLE_PG . '" WHERE key=\'' . $key . '\')';
+                return 'INSERT INTO ' . TABLE_PG . ' (key, data) SELECT * FROM (SELECT \'' . $key . '\', \'' . $val . '\') AS mt WHERE NOT EXISTS ( SELECT key FROM ' . TABLE_PG . ' WHERE key=\'' . $key . '\')';
             }
         }
     }
@@ -49,12 +47,12 @@ class Sql
             }
             else
             {
-                return 'DELETE FROM "' . TABLE_PG . '" WHERE key = \'' . $key . '\'';
+                return 'DELETE FROM ' . TABLE_PG . ' WHERE key = \'' . $key . '\'';
             }
-         }
+        }
     }
-
-    private function checkTypeDb($typeDb)
+                       
+    private function checkTypeDb ($typeDb)
     {
         if (in_array($typeDb, $this->arrayTypeDb)) 
         {
@@ -65,7 +63,5 @@ class Sql
             throw new Exception('Undefined type DB - '.$typeDb);
         }
     }
-
-
 }
 ?>
